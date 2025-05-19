@@ -1,6 +1,6 @@
 [versions]
-agp = "8.9.2"
-kotlin = "2.1.20"
+agp = "8.9.3"
+kotlin = "2.1.21"
 coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -15,6 +15,7 @@ ksp = "2.1.21-2.0.1"
 hilt = "2.56.2"
 hilt-navigation = "1.2.0"
 jetbrainsKotlinJvm = "2.1.20"
+javax-inject = "1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,6 +39,7 @@ navigation-compose = { module = "androidx.navigation:navigation-compose", versio
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 hilt-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation" }
+javax-inject = { module = "javax.inject:javax.inject", version.ref = "javax-inject" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
