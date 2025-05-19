@@ -58,6 +58,12 @@ dependencies {
     implementation(libs.hilt)
     implementation(libs.hilt.navigation)
 
+    implementation(project(":feature:login"))
+
+    implementation(project(":domain:auth"))
+
+    implementation(project(":data:auth"))
+
     ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit)
