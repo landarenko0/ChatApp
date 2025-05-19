@@ -1,9 +1,6 @@
 package com.example.auth.di
 
-import com.example.auth.repository.AuthRepository
-import com.example.auth.repository.AuthRepositoryImpl
 import com.example.auth.service.AuthService
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,13 +13,13 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal interface AuthModule {
+internal object AuthModule {
 
     @Singleton
     @Provides
     fun provideRetrofit(): Retrofit =
         Retrofit.Builder()
-            .baseUrl("") // TODO: Добавить url
+            .baseUrl("http://192.168.1.107:3826")
             .addConverterFactory(Json.asConverterFactory("application/json; charset=UTF8".toMediaType()))
             .build()
 
@@ -30,7 +27,4 @@ internal interface AuthModule {
     @Provides
     fun provideAuthService(retrofit: Retrofit): AuthService =
         retrofit.create(AuthService::class.java)
-
-    @Binds
-    fun bindRepository(impl: AuthRepositoryImpl): AuthRepository
 }
