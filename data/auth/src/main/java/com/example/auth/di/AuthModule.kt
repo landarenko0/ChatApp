@@ -1,7 +1,6 @@
 package com.example.auth.di
 
 import com.example.auth.service.AuthService
-import com.example.auth.utils.getUnsafeOkHttpClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +21,6 @@ internal object AuthModule {
         Retrofit.Builder()
             .baseUrl("http://192.168.1.107:3826")
             .addConverterFactory(Json.asConverterFactory("application/json; charset=UTF8".toMediaType()))
-            .client(getUnsafeOkHttpClient())
             .build()
 
     @Singleton
