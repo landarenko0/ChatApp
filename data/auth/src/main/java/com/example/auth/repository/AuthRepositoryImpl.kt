@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.auth.entities.AuthUser
 import com.example.auth.entities.User
 import com.example.auth.entities.UserApi
+import com.example.auth.entities.mappers.toApi
 import com.example.auth.entities.mappers.toDomain
 import com.example.auth.exceptions.ApiException
 import com.example.auth.service.AuthService
@@ -17,7 +18,8 @@ internal class AuthRepositoryImpl @Inject constructor(
     private val service: AuthService
 ) : AuthRepository {
 
-    private val authFile = File("${context.filesDir.absolutePath}/auth/auth.txt")
+    private val basePath = "${context.filesDir.absolutePath}/$AUTH_BASE_PATH"
+    private val authFilePath = "$basePath/$AUTH_FILE_NAME"
 
     override suspend fun login(username: String): Result<User> {
         return try {
@@ -34,25 +36,33 @@ internal class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun checkUserLoggedIn(): Boolean = authFile.exists()
+    override fun checkUserLoggedIn(): Boolean = File(authFilePath).exists()
 
     override fun getSavedUser(): User? {
         return try {
-            Json.decodeFromString(authFile.readText())
+            Json.decodeFromString<UserApi>(File(authFilePath).readText()).toDomain()
         } catch (_: Exception) {
             null
         }
     }
 
     override fun logOut() {
-        authFile.delete()
+        File(authFilePath).delete()
     }
 
     override fun saveUser(user: User) {
+        val authFile = File(authFilePath)
+
         if (!authFile.exists()) {
+            File(basePath).mkdirs()
             authFile.createNewFile()
         }
 
-        authFile.writeText(Json.encodeToString(user))
+        authFile.writeText(Json.encodeToString(user.toApi()))
+    }
+
+    companion object {
+        private const val AUTH_BASE_PATH = "auth"
+        private const val AUTH_FILE_NAME = "auth.txt"
     }
 }
