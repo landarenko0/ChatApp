@@ -1,8 +1,20 @@
 package com.example.chat.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun LoginRoot() {
+fun ChatRoot(
+    navigateToLoginScreen: () -> Unit
+) {
     
+}
+
+@Composable
+private fun ChatScreen(
+    modifier: Modifier = Modifier,
+    viewModel: ChatViewModel = hiltViewModel()
+) {
+
 }

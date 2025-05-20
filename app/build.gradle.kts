@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.hilt.navigation)
 
     implementation(project(":feature:login"))
+    implementation(project(":feature:chat"))
 
     implementation(project(":domain:auth"))
 
