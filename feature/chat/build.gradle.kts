@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
@@ -51,6 +52,8 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.hilt)
     implementation(libs.hilt.navigation)
+    implementation(libs.kotlinx.serialization)
+    implementation(libs.okhttp)
 
     implementation(project(":domain:auth"))
 

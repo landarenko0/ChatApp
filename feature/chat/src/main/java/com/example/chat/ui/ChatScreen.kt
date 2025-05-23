@@ -8,7 +8,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun ChatRoot(
     navigateToLoginScreen: () -> Unit
 ) {
-    
+    ChatScreen()
 }
 
 @Composable
